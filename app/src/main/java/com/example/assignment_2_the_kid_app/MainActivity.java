@@ -17,8 +17,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             "digit 3", "Click a box having a unique digit","Click a box that contains a digit and an alphabet"};
     String[] actions = {"green","9","red","2","yellow 3", "6", "A3"};
 
-    TextView question,counter,result,right,wrong;
+    TextView question,result,right,wrong;
     int wintn,correctAnswer = 0,wrongAnswer = 0;
+    Boolean game = false;
     Button btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9;
     ArrayList<Button> arr = new ArrayList<>();
     Random rnd = new Random();
@@ -57,37 +58,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         System.out.println(view.getId());
-        switch (view.getId())
-        {
-            case R.id.button:
-                DetermineAnswer(R.id.button);
-                break;
-            case R.id.button10:
-                DetermineAnswer(R.id.button10);
-                break;
-            case R.id.button11:
-                DetermineAnswer(R.id.button11);
-                break;
-            case R.id.button12:
-                DetermineAnswer(R.id.button12);
-                break;
-            case R.id.button13:
-                DetermineAnswer(R.id.button13);
-                break;
-            case R.id.button14:
-                DetermineAnswer(R.id.button14);
-                break;
-            case R.id.button15:
-                DetermineAnswer(R.id.button15);
-                break;
-            case R.id.button16:
-                DetermineAnswer(R.id.button16);
-                break;
-            case R.id.button17:
+        if(game){
+            game = true;
+        }
+        else {
+            switch (view.getId()) {
+                case R.id.button:
+                    DetermineAnswer(R.id.button);
+                    break;
+                case R.id.button10:
+                    DetermineAnswer(R.id.button10);
+                    break;
+                case R.id.button11:
+                    DetermineAnswer(R.id.button11);
+                    break;
+                case R.id.button12:
+                    DetermineAnswer(R.id.button12);
+                    break;
+                case R.id.button13:
+                    DetermineAnswer(R.id.button13);
+                    break;
+                case R.id.button14:
+                    DetermineAnswer(R.id.button14);
+                    break;
+                case R.id.button15:
+                    DetermineAnswer(R.id.button15);
+                    break;
+                case R.id.button16:
+                    DetermineAnswer(R.id.button16);
+                    break;
+                case R.id.button17:
                     DetermineAnswer(R.id.button17);
                     break;
-            default:
-                break;
+                default:
+                    break;
+            }
         }
         SetRandomQuestion();
     }
@@ -135,7 +140,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 ArrayList<String> color = new ArrayList<>();
                 color.add("blue");
                 color.add("white");
-                color.add("black");
+                color.add("teal");
                 color.add("red");
                 color.add("yellow");
                 color.add("orange");
@@ -159,7 +164,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 ArrayList<String> color = new ArrayList<>();
                 color.add("blue");
                 color.add("white");
-                color.add("black");
+                color.add("teal");
                 color.add("purple");
                 color.add("yellow");
                 color.add("orange");
@@ -175,6 +180,98 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 }
                 wintn = arr.get(ind).getId();
+            }
+            case 3:{
+                ArrayList<String> color = new ArrayList<>();
+                color.add("A");color.add("B");color.add("Z");color.add("I");color.add("/");color.add("+");
+                color.add("%");color.add("G");color.add("K");color.add(">");color.add("{");
+                color.add("L");
+
+                int ind = rnd.nextInt(arr.size());
+                arr.get(ind).setText("2");
+                for(Button b: arr)
+                {
+                    if(b != arr.get(ind)) {
+                        int t = rnd.nextInt(color.size());
+                        b.setText(color.get(t));
+                    }
+                }
+                wintn = arr.get(ind).getId();
+                break;
+            }
+            case 4:{
+                ArrayList<String> color = new ArrayList<>();
+                color.add("blue");color.add("white");color.add("teal");color.add("purple");
+                color.add("red");color.add("orange");color.add("green");
+
+                int ind = rnd.nextInt(arr.size());
+                arr.get(ind).setText("3");
+                SetColor(arr.get(ind),"yellow");
+                for(Button b: arr)
+                {
+                    if(b != arr.get(ind)) {
+                        int t = rnd.nextInt(color.size());
+                        b.setText(String.valueOf(t));
+                        SetColor(b,color.get(t));
+                    }
+                }
+                wintn = arr.get(ind).getId();
+                break;
+            }
+            case 5:{
+                ArrayList<String> color = new ArrayList<>();
+                color.add("1");color.add("2");color.add("3");
+
+                int ind = rnd.nextInt(arr.size());
+                int answer = rnd.nextInt(color.size());
+                arr.get(ind).setText(color.get(answer));
+                for(Button b: arr)
+                {
+                    SetColor(b,"purple");
+                    if(b != arr.get(ind)) {
+                        int t = rnd.nextInt(color.size());
+                        while(t == answer){
+                            t = rnd.nextInt(color.size());
+                        }
+                        b.setText(color.get(t));
+                    }
+                }
+                wintn = arr.get(ind).getId();
+                break;
+            }
+            case 6: {
+                ArrayList<String> color = new ArrayList<>();
+                ArrayList<String> alphabet = new ArrayList<>();
+                color.add("1");color.add("2");color.add("3");color.add("4"); color.add("5");
+                alphabet.add("O");alphabet.add("L");alphabet.add("K");alphabet.add("V");alphabet.add("C");
+                alphabet.add("A");alphabet.add("B");alphabet.add("C");
+                int ind = rnd.nextInt(arr.size());
+                int answer = rnd.nextInt(color.size());
+                int answer2 = rnd.nextInt(alphabet.size());
+                arr.get(ind).setText(color.get(answer)+alphabet.get(answer2));
+                int rand = 0;
+                for(Button b: arr)
+                {
+                    SetColor(b,"white");
+                    if(b != arr.get(ind)) {
+                        int t = rnd.nextInt(color.size());
+                        int t2 = rnd.nextInt(alphabet.size());
+                        while(t == answer || t2 == answer2){
+                            t = rnd.nextInt(color.size());
+                            t2 = rnd.nextInt(alphabet.size());
+                        }
+                        if(rand == 0){
+                            b.setText(alphabet.get(t2)+color.get(t)+alphabet.get(t2));
+                            rand = 1;
+                        }
+                        else {
+                            b.setText(color.get(t)+alphabet.get(t2)+color.get(t));
+                            rand = 0;
+                        }
+                    }
+                }
+                wintn = arr.get(ind).getId();
+                break;
             }
             default:
                 break;
@@ -198,37 +295,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
     private void SetColor(Button but, String color)
     {
-        if(color=="green")
+        if(color.contentEquals("green"))
         {
             but.setBackgroundColor(getResources().getColor(R.color.green));
         }
-        else if(color=="red")
+        else if(color.contentEquals("red"))
         {
             but.setBackgroundColor(getResources().getColor(R.color.red));
         }
-        else if(color=="blue")
+        else if(color.contentEquals("blue"))
         {
             but.setBackgroundColor(getResources().getColor(R.color.blue));
         }
-        else if(color=="orange")
+        else if(color.contentEquals("orange"))
         {
             but.setBackgroundColor(getResources().getColor(R.color.orange));
         }
-        else if(color=="yellow")
+        else if(color.contentEquals("yellow"))
         {
             but.setBackgroundColor(getResources().getColor(R.color.yellow));
         }
-        else if(color=="white")
+        else if(color.contentEquals("white"))
         {
             but.setBackgroundColor(getResources().getColor(R.color.white));
         }
-        else if(color=="purple_200")
+        else if(color.contentEquals("purple"))
         {
-            but.setBackgroundColor(getResources().getColor(R.color.purple));
+            but.setBackgroundColor(getResources().getColor(R.color.purple_200));
         }
-        else if(color=="black")
+        else if(color.contentEquals("black"))
         {
             but.setBackgroundColor(getResources().getColor(R.color.black));
+        }
+        else if(color.contentEquals("teal"))
+        {
+            but.setBackgroundColor(getResources().getColor(R.color.teal_700));
         }
     }
 }
