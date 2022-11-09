@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void SetGameEnvironment(int index){
         switch (index){
             case 0: {
-                String [] color = {"red","blue","green","yellow","orange"};
+                String [] color = {"red","green","yellow","orange"};
                 int temp = rnd.nextInt(arr.size());
                 int temp1 = rnd.nextInt(color.length);
                 int prev = -1;
@@ -143,6 +143,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             wintn = 0;
         }
         else{
+            result.setText("Wrong!");
+            result.setTextColor((getResources().getColor(R.color.red)));
             wintn = 0;
             wrongAnswer++;
             wrong.setText(String.valueOf(wrongAnswer));
