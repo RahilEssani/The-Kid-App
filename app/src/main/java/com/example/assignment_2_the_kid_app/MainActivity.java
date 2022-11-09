@@ -103,26 +103,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void SetGameEnvironment(int index){
         switch (index){
             case 0: {
-                String [] color = {"red","green","yellow","orange"};
+                ArrayList<String> color = new ArrayList<>();
+                color.add("red");
+                color.add("yellow");
+                color.add("orange");
+                color.add("green");
                 int temp = rnd.nextInt(arr.size());
-                int temp1 = rnd.nextInt(color.length);
+                int temp1 = rnd.nextInt(color.size());
                 int prev = -1;
                 System.out.println(arr.get(temp).getId());
-                System.out.println(color[temp1]);
-                SetColor(arr.get(temp),color[temp1]);
-                arr.get(temp).setText(color[temp1].toUpperCase());
+                System.out.println(color.get(temp1));
+                SetColor(arr.get(temp),color.get(temp1));
+                arr.get(temp).setText(color.get(temp1).toUpperCase());
+                color.remove(temp1);
                 for(Button b : arr){
                     if(b != arr.get(temp)){
                         System.out.println(b.getId());
-                        int t = rnd.nextInt(color.length);
-                        System.out.println(color[t]);
+                        int t = rnd.nextInt(color.size());
+                        System.out.println(color.get(t));
                         while(t == temp1 || t == prev)
                         {
-                            t = rnd.nextInt(color.length);
+                            t = rnd.nextInt(color.size());
                         }
                         prev = t;
-                        b.setText(color[t].toUpperCase());
-                        SetColor(b,color[t]);
+                        b.setText(color.get(t).toUpperCase());
+                        SetColor(b,color.get(t));
                     }
                 }
                 wintn = arr.get(temp).getId();
