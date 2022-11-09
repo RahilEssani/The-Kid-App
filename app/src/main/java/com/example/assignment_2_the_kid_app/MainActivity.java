@@ -111,14 +111,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 int temp = rnd.nextInt(arr.size());
                 int temp1 = rnd.nextInt(color.size());
                 int prev = -1;
-                System.out.println(arr.get(temp).getId());
-                System.out.println(color.get(temp1));
                 SetColor(arr.get(temp),color.get(temp1));
                 arr.get(temp).setText(color.get(temp1).toUpperCase());
                 color.remove(temp1);
                 for(Button b : arr){
                     if(b != arr.get(temp)){
-                        System.out.println(b.getId());
                         int t = rnd.nextInt(color.size());
                         System.out.println(color.get(t));
                         while(t == temp1 || t == prev)
@@ -135,8 +132,49 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
             case 1:
             {
-
+                ArrayList<String> color = new ArrayList<>();
+                color.add("blue");
+                color.add("white");
+                color.add("black");
+                color.add("red");
+                color.add("yellow");
+                color.add("orange");
+                color.add("green");
+                int num = rnd.nextInt(200);
+                int ind = rnd.nextInt(arr.size());
+                arr.get(ind).setText(String.valueOf(num));
+                for(Button b: arr)
+                {
+                    if(b != arr.get(ind)) {
+                        int t = rnd.nextInt(color.size());
+                        SetColor(b, color.get(t));
+                        b.setText(color.get(t).toUpperCase());
+                    }
+                }
+                wintn = arr.get(ind).getId();
                 break;
+            }
+            case 2:
+            {
+                ArrayList<String> color = new ArrayList<>();
+                color.add("blue");
+                color.add("white");
+                color.add("black");
+                color.add("purple");
+                color.add("yellow");
+                color.add("orange");
+                color.add("green");
+                int ind = rnd.nextInt(arr.size());
+                SetColor(arr.get(ind),"red");
+                arr.get(ind).setText("RED");
+                for(Button b : arr){
+                    if(b != arr.get(ind)){
+                        int t = rnd.nextInt(color.size());
+                        b.setText(color.get(t).toUpperCase());
+                        SetColor(b,color.get(t));
+                    }
+                }
+                wintn = arr.get(ind).getId();
             }
             default:
                 break;
@@ -179,6 +217,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         else if(color=="yellow")
         {
             but.setBackgroundColor(getResources().getColor(R.color.yellow));
+        }
+        else if(color=="white")
+        {
+            but.setBackgroundColor(getResources().getColor(R.color.white));
+        }
+        else if(color=="purple_200")
+        {
+            but.setBackgroundColor(getResources().getColor(R.color.purple));
+        }
+        else if(color=="black")
+        {
+            but.setBackgroundColor(getResources().getColor(R.color.black));
         }
     }
 }
