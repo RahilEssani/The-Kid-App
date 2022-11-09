@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             "digit 3", "Click a box having a unique digit","Click a box that contains a digit and an alphabet"};
     String[] actions = {"green","9","red","2","yellow 3", "6", "A3"};
 
-    TextView question,counter,result;
+    TextView question,counter,result,right,wrong;
     int wintn,correctAnswer = 0,wrongAnswer = 0;
     Button btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9;
     ArrayList<Button> arr = new ArrayList<>();
@@ -29,7 +29,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         question = findViewById(R.id.question);
         question.setOnClickListener(this);
         question.setText("Press any button to start...");
-        result = findViewById(R.id.textView2);
+        result = findViewById(R.id.result);
+        right = findViewById(R.id.right1);
+        wrong = findViewById(R.id.wrong);
         btn1 = findViewById(R.id.button);
         arr.add(btn1);
         btn2 = findViewById(R.id.button10);
@@ -137,11 +139,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             result.setText("Correct!");
             result.setTextColor((getResources().getColor(R.color.green)));
             correctAnswer++;
+            right.setText(String.valueOf(correctAnswer));
             wintn = 0;
         }
         else{
             wintn = 0;
             wrongAnswer++;
+            wrong.setText(String.valueOf(wrongAnswer));
         }
     }
     private void SetColor(Button but, String color)
