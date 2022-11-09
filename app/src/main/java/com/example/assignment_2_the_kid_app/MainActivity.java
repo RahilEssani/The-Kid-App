@@ -180,6 +180,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 }
                 wintn = arr.get(ind).getId();
+                break;
             }
             case 3:{
                 ArrayList<String> color = new ArrayList<>();
