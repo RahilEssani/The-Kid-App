@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -109,6 +110,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 System.out.println(arr.get(temp).getId());
                 System.out.println(color[temp1]);
                 SetColor(arr.get(temp),color[temp1]);
+                arr.get(temp).setText(color[temp1].toUpperCase());
                 for(Button b : arr){
                     if(b != arr.get(temp)){
                         System.out.println(b.getId());
@@ -119,6 +121,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             t = rnd.nextInt(color.length);
                         }
                         prev = t;
+                        b.setText(color[t].toUpperCase());
                         SetColor(b,color[t]);
                     }
                 }
