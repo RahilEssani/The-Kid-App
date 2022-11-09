@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     TextView question,result,right,wrong;
     int wintn,correctAnswer = 0,wrongAnswer = 0;
-    Boolean game = false;
+    boolean game = false;
     Button btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9;
     ArrayList<Button> arr = new ArrayList<>();
     Random rnd = new Random();
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         System.out.println(view.getId());
-        if(game){
+        if(!game){
             game = true;
         }
         else {
